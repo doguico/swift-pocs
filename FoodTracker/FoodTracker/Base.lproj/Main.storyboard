@@ -22,8 +22,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="iLT-Cg-u6o">
-                                <rect key="frame" x="16" y="57" width="268" height="80.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="OsV-uz-dbV">
+                                <rect key="frame" x="16" y="40" width="288" height="80.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meal Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c0Z-3B-I8N">
                                         <rect key="frame" x="0.0" y="0.0" width="86.5" height="20.5"/>
@@ -32,7 +32,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Meal Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dwh-L6-EJC">
-                                        <rect key="frame" x="0.0" y="20.5" width="268" height="30"/>
+                                        <rect key="frame" x="0.0" y="20.5" width="288" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
@@ -40,20 +40,27 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YKq-bW-13F">
                                         <rect key="frame" x="0.0" y="50.5" width="151" height="30"/>
                                         <state key="normal" title="Set Default Label Text"/>
+                                        <connections>
+                                            <action selector="setDefaultLabelText:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CXX-8w-3NB"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="dwh-L6-EJC" secondAttribute="trailing" id="MYz-u2-gMc"/>
+                                    <constraint firstAttribute="trailing" secondItem="dwh-L6-EJC" secondAttribute="trailing" id="c0g-j3-GZu"/>
                                 </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="iLT-Cg-u6o" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="I0B-4T-peB"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="iLT-Cg-u6o" secondAttribute="trailing" constant="20" id="bPI-3P-CTx"/>
-                            <constraint firstItem="iLT-Cg-u6o" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="wP6-nX-5is"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="OsV-uz-dbV" secondAttribute="trailing" id="DTT-45-fIX"/>
+                            <constraint firstItem="OsV-uz-dbV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="VBG-JD-vsU"/>
+                            <constraint firstItem="OsV-uz-dbV" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="d4i-va-zYZ"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mealNameLabel" destination="c0Z-3B-I8N" id="6mR-Pc-A5F"/>
+                        <outlet property="mealNameTextField" destination="dwh-L6-EJC" id="9iF-yP-2GQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
