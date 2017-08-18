@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+<<<<<<< HEAD
 		8D5325111F4729960008C56A /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5325101F4729960008C56A /* Meal.swift */; };
+=======
 		8D5325151F4740810008C56A /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5325141F4740810008C56A /* RatingControl.swift */; };
+>>>>>>> feature/custom-rating-control
 		8D9967261F461ACD00B37440 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9967251F461ACD00B37440 /* AppDelegate.swift */; };
 		8D9967281F461ACD00B37440 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9967271F461ACD00B37440 /* ViewController.swift */; };
 		8D99672B1F461ACD00B37440 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D9967291F461ACD00B37440 /* Main.storyboard */; };
@@ -28,8 +31,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8D5325141F4740810008C56A /* RatingControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		8D5325101F4729960008C56A /* Meal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
+=======
+		8D5325141F4740810008C56A /* RatingControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
+>>>>>>> feature/custom-rating-control
 		8D9967221F461ACD00B37440 /* FoodTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D9967251F461ACD00B37440 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D9967271F461ACD00B37440 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -206,7 +212,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D9967281F461ACD00B37440 /* ViewController.swift in Sources */,
+<<<<<<< HEAD
+				8D5325111F4729960008C56A /* Meal.swift in Sources */,
+=======
 				8D5325151F4740810008C56A /* RatingControl.swift in Sources */,
+>>>>>>> feature/custom-rating-control
 				8D9967261F461ACD00B37440 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
