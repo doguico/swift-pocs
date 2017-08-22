@@ -15,21 +15,21 @@ class Meal{
     var photo: UIImage?
     var rating: Int
     
-    init?(pName: String, pPhoto: UIImage?, pRating: Int){
+    init?(name: String, photo: UIImage?, rating: Int){
         // The name must not be empty
-        guard !pName.isEmpty else {
+        guard !name.isEmpty else {
             return nil
         }
         
         // The rating must be between 0 and 5 inclusively
-        guard (pRating >= 0) && (pRating <= 5) else {
+        guard (rating >= 0) && (rating <= 5) else {
             return nil
         }
         
         // Initialize stored properties.
-        self.name = pName
-        self.photo = pPhoto
-        self.rating = pRating
+        self.name = name
+        self.photo = photo
+        self.rating = rating
     }
     
     
