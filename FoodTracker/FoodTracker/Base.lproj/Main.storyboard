@@ -120,15 +120,22 @@
                     </view>
                     <navigationItem key="navigationItem" title="New Meal" id="qqI-SL-SMC">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="h62-sL-LoO"/>
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="P5M-94-pwg"/>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="P5M-94-pwg">
+                            <connections>
+                                <action selector="addNewMeal:" destination="BYZ-38-t0r" id="agf-U4-YwQ"/>
+                                <segue destination="iHa-0N-ISb" kind="unwind" unwindAction="unwindToMealListWithSender:" id="Ph6-qe-xKp"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="mealNameTextField" destination="dwh-L6-EJC" id="9iF-yP-2GQ"/>
                         <outlet property="photoImageView" destination="Bmg-Mj-ghd" id="w89-pH-rEx"/>
                         <outlet property="ratingControl" destination="R0w-7l-uFO" id="w0d-kX-EY2"/>
+                        <outlet property="saveButton" destination="P5M-94-pwg" id="Dfn-D6-aen"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="iHa-0N-ISb" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="eDJ-YG-374">
                     <connections>
                         <action selector="selectImageFromPhotoLibrary:" destination="BYZ-38-t0r" id="gPY-vP-9gY"/>
