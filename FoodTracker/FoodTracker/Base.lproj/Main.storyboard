@@ -119,7 +119,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="New Meal" id="qqI-SL-SMC">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="h62-sL-LoO"/>
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="h62-sL-LoO">
+                            <connections>
+                                <action selector="cancel:" destination="BYZ-38-t0r" id="rzm-Cy-HvB"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Save" id="P5M-94-pwg">
                             <connections>
                                 <action selector="addNewMeal:" destination="BYZ-38-t0r" id="agf-U4-YwQ"/>
