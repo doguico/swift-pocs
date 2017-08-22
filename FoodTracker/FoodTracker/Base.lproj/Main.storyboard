@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="bti-nb-CcE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="pS7-s6-ZLy">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -11,7 +11,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Meal Table View Controller-->
+        <!--Your Meals-->
         <scene sceneID="eW8-PC-7tQ">
             <objects>
                 <tableViewController id="bti-nb-CcE" customClass="MealTableViewController" customModule="FoodTracker" customModuleProvider="target" sceneMemberID="viewController">
@@ -56,12 +56,19 @@
                             <outlet property="delegate" destination="bti-nb-CcE" id="33B-NW-Yst"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Your Meals" id="hlT-Bl-yfp">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="me1-iP-wte">
+                            <connections>
+                                <segue destination="TZG-8S-ZJb" kind="presentation" identifier="AddItem" id="Wga-a2-kgL"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Epd-f8-evd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-791.20000000000005" y="148.87556221889056"/>
+            <point key="canvasLocation" x="148" y="148.87556221889056"/>
         </scene>
-        <!--Meal View Controller-->
+        <!--New Meal-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MealViewController" customModule="FoodTracker" customModuleProvider="target" sceneMemberID="viewController">
@@ -74,7 +81,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="OsV-uz-dbV">
-                                <rect key="frame" x="16" y="40" width="343" height="417"/>
+                                <rect key="frame" x="16" y="84" width="343" height="417"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Meal Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dwh-L6-EJC">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
@@ -111,20 +118,71 @@
                             <constraint firstItem="OsV-uz-dbV" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="d4i-va-zYZ"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="New Meal" id="qqI-SL-SMC">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="h62-sL-LoO">
+                            <connections>
+                                <action selector="cancel:" destination="BYZ-38-t0r" id="rzm-Cy-HvB"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="P5M-94-pwg">
+                            <connections>
+                                <action selector="addNewMeal:" destination="BYZ-38-t0r" id="agf-U4-YwQ"/>
+                                <segue destination="iHa-0N-ISb" kind="unwind" unwindAction="unwindToMealListWithSender:" id="Ph6-qe-xKp"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="mealNameTextField" destination="dwh-L6-EJC" id="9iF-yP-2GQ"/>
                         <outlet property="photoImageView" destination="Bmg-Mj-ghd" id="w89-pH-rEx"/>
                         <outlet property="ratingControl" destination="R0w-7l-uFO" id="w0d-kX-EY2"/>
+                        <outlet property="saveButton" destination="P5M-94-pwg" id="Dfn-D6-aen"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="iHa-0N-ISb" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="eDJ-YG-374">
                     <connections>
                         <action selector="selectImageFromPhotoLibrary:" destination="BYZ-38-t0r" id="gPY-vP-9gY"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-62" y="149"/>
+            <point key="canvasLocation" x="1815.2" y="148.87556221889056"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="wJq-b9-dJc">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pS7-s6-ZLy" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="yf7-zF-q9x">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="bti-nb-CcE" kind="relationship" relationship="rootViewController" id="Dmy-RP-hJU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Ru-h2-rZp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-791.20000000000005" y="148.87556221889056"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Zoa-zs-Gid">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TZG-8S-ZJb" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="290-fE-ZWq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="vmv-Db-3dW"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Uxw-OR-qab" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="876" y="148.87556221889056"/>
         </scene>
     </scenes>
     <resources>
