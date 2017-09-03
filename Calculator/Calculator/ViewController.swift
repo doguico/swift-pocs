@@ -15,6 +15,16 @@ class ViewController: UIViewController {
     var userIsInTheMiddleOfWritingANumber = false
     var digits = [Double]()
     
+    var displayValue: Double{
+        get{
+            return Double(display.text!)!
+        }
+        set{
+            display.text = "\(newValue)"
+            userIsInTheMiddleOfWritingANumber = false
+        }
+    }
+
     @IBAction func appendDigit(_ sender: UIButton) {
         if userIsInTheMiddleOfWritingANumber {
             display.text = display.text! + sender.currentTitle!
@@ -34,32 +44,29 @@ class ViewController: UIViewController {
     
     @IBAction func performOperation(_ sender: UIButton) {
         let operation = sender.currentTitle!
-        if userIsInTheMiddleOfWritingANumber{
+        if userIsInTheMiddleOfWritingANumber{ 
             enter()
         }
-        
         switch operation{
-        case "+": operate { $0 + $1 }
-        case "−": operate { $1 - $0 }
-        case "×": operate { $0 * $1 }
-        case "÷": operate { $1 / $0 }
-        case "√": operateSingleParameter { sqrt($0) }
-        default: break
+            case "+": operate { $0 + $1 }
+            case "−": operate { $1 - $0 }
+            case "×": operate { $0 * $1 }
+            case "÷": operate { $1 / $0 }
+            case "√": operateSingleParameter { sqrt($0) }
+            default: break
         }
     }
     
     func operate(operation: (Double, Double) -> Double){
         if digits.count >= 2{
-            let newValue = operation(digits.removeLast(), digits.removeLast())
-            display.text = "\(newValue)"
+            displayValue = operation(digits.removeLast(), digits.removeLast())
             enter()
         }
     }
     
     func operateSingleParameter(operation: (Double) -> Double){
         if digits.count >= 1{
-            let newValue = operation(digits.removeLast())
-            display.text = "\(newValue)"
+            displayValue = operation(digits.removeLast())
             enter()
         }
     }
