@@ -77,12 +77,9 @@
 		8D2CA70A1F5C6E08008FEEDF /* Calculator */ = {
 			isa = PBXGroup;
 			children = (
-				8D2CA70B1F5C6E08008FEEDF /* AppDelegate.swift */,
+				8D2CA72B1F5C6E43008FEEDF /* Other */,
 				8D2CA70D1F5C6E08008FEEDF /* ViewController.swift */,
 				8D2CA70F1F5C6E08008FEEDF /* Main.storyboard */,
-				8D2CA7121F5C6E08008FEEDF /* Assets.xcassets */,
-				8D2CA7141F5C6E08008FEEDF /* LaunchScreen.storyboard */,
-				8D2CA7171F5C6E08008FEEDF /* Info.plist */,
 			);
 			path = Calculator;
 			sourceTree = "<group>";
@@ -94,6 +91,17 @@
 				8D2CA7221F5C6E08008FEEDF /* Info.plist */,
 			);
 			path = CalculatorTests;
+			sourceTree = "<group>";
+		};
+		8D2CA72B1F5C6E43008FEEDF /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				8D2CA7171F5C6E08008FEEDF /* Info.plist */,
+				8D2CA7141F5C6E08008FEEDF /* LaunchScreen.storyboard */,
+				8D2CA7121F5C6E08008FEEDF /* Assets.xcassets */,
+				8D2CA70B1F5C6E08008FEEDF /* AppDelegate.swift */,
+			);
+			name = Other;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
