@@ -44,11 +44,11 @@ class ViewController: UIViewController {
     
     @IBAction func performOperation(_ sender: UIButton) {
         let operation = sender.currentTitle!
-        if userIsInTheMiddleOfWritingANumber{ 
+        if userIsInTheMiddleOfWritingANumber{
             enter()
         }
         switch operation{
-            case "+": operate { $0 + $1 }
+            case "+": operate { $0 + $1 } //Closure
             case "−": operate { $1 - $0 }
             case "×": operate { $0 * $1 }
             case "÷": operate { $1 / $0 }
