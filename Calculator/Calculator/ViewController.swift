@@ -11,8 +11,11 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var display: UILabel!
+    @IBOutlet weak var history: UILabel!
     
     var userIsInTheMiddleOfWritingANumber = false
+    var numberIsAlreadyAFloat = false
+    
     var digits = [Double]()
     
     var displayValue: Double{
@@ -26,19 +29,36 @@ class ViewController: UIViewController {
     }
 
     @IBAction func appendDigit(_ sender: UIButton) {
-        if userIsInTheMiddleOfWritingANumber {
-            display.text = display.text! + sender.currentTitle!
+        let digit = sender.currentTitle!
+        if digit != "." {
+            append(value: digit)
         }
-        else{
-            userIsInTheMiddleOfWritingANumber = true
-            display.text = sender.currentTitle!
+        else if !numberIsAlreadyAFloat {
+            numberIsAlreadyAFloat = true
+            userIsInTheMiddleOfWritingANumber ? append(value: ".") : append(value: "0.")
         }
     }
 
+    func append(value: String){
+        if userIsInTheMiddleOfWritingANumber {
+            display.text = display.text! + value
+        }
+        else{
+            userIsInTheMiddleOfWritingANumber = true
+            display.text = value
+        }
+    }
+    
+    @IBAction func appendPiDigit() {
+        print("Entre")
+    }
+
+ 
     @IBAction func enter() {
         let digit = Double(display.text!)
         digits.append(digit!)
         userIsInTheMiddleOfWritingANumber = false
+        numberIsAlreadyAFloat = false
         print("\(digits)")
     }
     
@@ -53,10 +73,12 @@ class ViewController: UIViewController {
             case "×": operate { $0 * $1 }
             case "÷": operate { $1 / $0 }
             case "√": operateSingleParameter { sqrt($0) }
+            case "cos": operateSingleParameter { cos($0) }
+            case "sin": operateSingleParameter { sin($0) }
             default: break
         }
     }
-    
+
     func operate(operation: (Double, Double) -> Double){
         if digits.count >= 2{
             displayValue = operation(digits.removeLast(), digits.removeLast())
@@ -71,5 +93,13 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func clear() {
+        userIsInTheMiddleOfWritingANumber = false
+        numberIsAlreadyAFloat = false
+        digits.removeAll()
+        display.text = "0"
+        history.text = "History"
+        print("\(digits)")
+    }
 }
 
