@@ -25,6 +25,10 @@ class ViewController: UIViewController {
     
     @IBAction func touchDigit(_ sender: UIButton) {
         let digit = sender.currentTitle!
+        
+        if digit == "." && display.text!.contains(".") && userIsInTheMiddleOfTyping{
+            return
+        }
         if userIsInTheMiddleOfTyping {
             let textCurrentlyInDisplay = display.text!
             display.text = textCurrentlyInDisplay + digit
@@ -46,6 +50,5 @@ class ViewController: UIViewController {
             displayValue = result
         }
     }
-    
 }
 
