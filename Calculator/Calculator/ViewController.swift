@@ -11,7 +11,10 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet weak var display: UILabel!
+    @IBOutlet weak var history: UILabel!
+    
     var userIsInTheMiddleOfTyping = false
+    
     var brain = CalculatorBrain()
     
     var displayValue: Double {
@@ -22,10 +25,13 @@ class ViewController: UIViewController {
             display.text = String(newValue)
         }
     }
+
+    func setDescription(){
+        history.text = brain.resultIsPending ? brain.description + " ..." : brain.description + " ="
+    }
     
     @IBAction func touchDigit(_ sender: UIButton) {
         let digit = sender.currentTitle!
-        
         if digit == "." && display.text!.contains(".") && userIsInTheMiddleOfTyping{
             return
         }
@@ -33,7 +39,7 @@ class ViewController: UIViewController {
             let textCurrentlyInDisplay = display.text!
             display.text = textCurrentlyInDisplay + digit
         } else {
-            display.text = digit
+            display.text = digit == "." ? "0." : digit
             userIsInTheMiddleOfTyping = true
         }
     }
@@ -49,6 +55,14 @@ class ViewController: UIViewController {
         if let result = brain.result{
             displayValue = result
         }
+        
+        setDescription()
+    }
+    
+    @IBAction func resetCalculator() {
+        brain = CalculatorBrain()
+        print("\(brain.resultIsPending)")
+        displayValue = 0
     }
 }
 
