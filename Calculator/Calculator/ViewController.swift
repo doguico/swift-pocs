@@ -16,16 +16,26 @@ class ViewController: UIViewController {
     var userIsInTheMiddleOfTyping = false
     
     var brain = CalculatorBrain()
+    var formatter = NumberFormatter()
     
-    var displayValue: Double {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    
+        formatter.maximumFractionDigits = 6
+        formatter.minimumFractionDigits = 0
+        formatter.numberStyle = .decimal
+    }
+    
+    var displayValue: (value: Double, description: String) {
         get{
-            return Double(display.text!)!
+            let formattedDisplay = (formatter.string(from: (formatter.number(from: display.text!))!)!)
+            return (Double(display.text!)!, formattedDisplay)
         }
         set{
-            display.text = String(newValue)
+            display.text = formatter.string(for: newValue.value)
         }
     }
-
+    
     func setDescription(){
         history.text = brain.resultIsPending ? brain.description + " ..." : brain.description + " ="
     }
@@ -53,7 +63,7 @@ class ViewController: UIViewController {
             brain.performOperation(symbol)
         }
         if let result = brain.result{
-            displayValue = result
+            displayValue.value = result
         }
         
         setDescription()
@@ -62,7 +72,9 @@ class ViewController: UIViewController {
     @IBAction func resetCalculator() {
         brain = CalculatorBrain()
         print("\(brain.resultIsPending)")
-        displayValue = 0
+        displayValue = (0, "0")
     }
+    
+    
 }
 

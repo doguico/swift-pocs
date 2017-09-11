@@ -21,7 +21,6 @@ struct CalculatorBrain{
     var description: String{
         get{
             if resultIsPending {
-                print("result is pending")
                 return pendingBinaryOperation!.description
             }
             return accumulator?.description ?? " "
@@ -42,10 +41,10 @@ struct CalculatorBrain{
         "√": Operation.unaryOperation(sqrt, {"√(" + $0 + ")"}),
         "±": Operation.unaryOperation({ -$0 }, {$0}),
         "cos": Operation.unaryOperation(cos, {"cos(" + $0 + ")"}),
-        "+": Operation.binaryOperation({ $0 + $1 }, {$0 + " + "}),
-        "−": Operation.binaryOperation({ $0 - $1 }, {$0 + " − "}),
-        "×": Operation.binaryOperation({ $0 * $1 }, {$0 + " × "}),
-        "÷": Operation.binaryOperation({ $0 / $1 }, {$0 + " ÷ "}),
+        "+": Operation.binaryOperation(+, {$0 + " + "}),
+        "−": Operation.binaryOperation(-, {$0 + " − "}),
+        "×": Operation.binaryOperation(*, {$0 + " × "}),
+        "÷": Operation.binaryOperation(/, {$0 + " ÷ "}),
         "=": Operation.equals,
         "Rad": Operation.random
     ]
@@ -78,7 +77,7 @@ struct CalculatorBrain{
     
     private mutating func calculateRandomNumber(){
         let arc4randomMax = Double(UInt32.max)
-        accumulator = (Double(arc4random()) / arc4randomMax, accumulator!.1.appending("Random number"))
+        accumulator = (Double(arc4random()) / arc4randomMax, "RAD")
     }
     
     mutating func performOperation(_ symbol: String){
@@ -92,33 +91,20 @@ struct CalculatorBrain{
                 }
             case .binaryOperation(let mathFunction, let setDescription):
                 if accumulator != nil  {
+                    performPendingBinaryOperation()
                     pendingBinaryOperation = PendingBinaryOperation(function: mathFunction, firstOperand: accumulator!.value, description: setDescription(accumulator!.description))
                     accumulator = nil
                 }
             case .equals(): performPendingBinaryOperation()
             case .random: calculateRandomNumber()
             }
-            
-            print("performOperation")
-            print("description: " + description)
+
         }
     }
     
-    mutating func setOperand(_ operand: Double){
-        accumulator = (operand, String(operand))
-        print("setOperand")
-        print("description: " + description)
-
-
-//        if resultIsPending {
-//            accumulator = (operand, accumulator!.1 + String(operand))
-//        }
-//        else{
-//            accumulator = (operand, String(operand))
-//        }
-//        print("En set operand")
-//        print("value " + "\(accumulator!.value)")
-//        print("description " + accumulator!.description)
+    mutating func setOperand(_ operand: (Double, String)){
+        accumulator = (operand.0, operand.1)
     }
+
 }
 
