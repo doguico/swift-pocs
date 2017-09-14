@@ -37,7 +37,7 @@ struct CalculatorBrain{
         "π": Operation.constant(Double.pi, {"π"}),
         "e": Operation.constant(M_E, {"e"}),
         "√": Operation.unaryOperation(sqrt, {"√(" + $0 + ")"}),
-        "±": Operation.unaryOperation({ -$0 }, {$0}),
+        "±": Operation.unaryOperation({ -$0 }, { "-(" + $0 + ")"}),
         "cos": Operation.unaryOperation(cos, {"cos(" + $0 + ")"}),
         "+": Operation.binaryOperation(+, {$0 + " + "}),
         "−": Operation.binaryOperation(-, {$0 + " − "}),
@@ -46,8 +46,6 @@ struct CalculatorBrain{
         "=": Operation.equals,
         "Rad": Operation.random
     ]
-    
-
     
     private struct PendingBinaryOperation{
         let function: (Double, Double) -> Double
@@ -92,12 +90,11 @@ struct CalculatorBrain{
         }
     }
     
-    mutating func setOperand(_ operand: (Double, String)){
-        accumulator = (operand.0, operand.1)
+    mutating func setOperand(_ operand: Double){
+        accumulator = (operand, String(operand))
     }
     
     func setOperand(variable named: String){
-    
     }
     
     func evaluate(using variables: Dictionary<String,Double>? = nil)

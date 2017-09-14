@@ -22,27 +22,26 @@ class ViewController: UIViewController {
         super.viewDidLoad()
     
         formatter.maximumFractionDigits = 6
-        formatter.minimumFractionDigits = 0
+        //formatter.minimumFractionDigits = 0
         formatter.numberStyle = .decimal
     }
     
-    var displayValue: (value: Double, description: String) {
+    var displayValue: Double {
         get{
-            let formattedDisplay = (formatter.string(from: (formatter.number(from: display.text!))!)!)
-            return (Double(display.text!)!, formattedDisplay)
+            return (NumberFormatter().number(from: display.text!)!.doubleValue)
         }
         set{
-            display.text = formatter.string(for: newValue.value)
+            display.text = formatter.string(for: newValue)
         }
     }
     
     func setDescription(){
-        history.text = brain.resultIsPending ? brain.description + " ..." : brain.description + " ="
+        history.text = brain.resultIsPending ? brain.description + " ..." : brain.result != nil ? brain.description + " =" : " "
     }
     
     @IBAction func touchDigit(_ sender: UIButton) {
         let digit = sender.currentTitle!
-        if digit == "." && display.text!.contains(".") && userIsInTheMiddleOfTyping{
+        if digit == "." && display.text!.contains(".") && userIsInTheMiddleOfTyping {
             return
         }
         if userIsInTheMiddleOfTyping {
@@ -63,15 +62,17 @@ class ViewController: UIViewController {
             brain.performOperation(symbol)
         }
         if let result = brain.result{
-            displayValue.value = result
+            displayValue = result
         }
         setDescription()
     }
     
     @IBAction func resetCalculator() {
         brain = CalculatorBrain()
-        brain.setOperand((0.0, "0"))
-        displayValue = (0, "0")
+        brain.setOperand(0.0)
+        displayValue = 0
+        userIsInTheMiddleOfTyping = false
+        setDescription()
     }
     
     
