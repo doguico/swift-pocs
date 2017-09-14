@@ -79,10 +79,10 @@
 		8D2CA70A1F5C6E08008FEEDF /* Calculator */ = {
 			isa = PBXGroup;
 			children = (
-				8D7009171F5DE8D600B1D145 /* Supporting files */,
 				8D2CA70D1F5C6E08008FEEDF /* ViewController.swift */,
 				8D2CA70F1F5C6E08008FEEDF /* Main.storyboard */,
 				8D7009151F5DE8BF00B1D145 /* CalculatorBrain.swift */,
+				8D7009171F5DE8D600B1D145 /* Supporting files */,
 			);
 			path = Calculator;
 			sourceTree = "<group>";

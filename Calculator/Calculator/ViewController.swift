@@ -65,13 +65,12 @@ class ViewController: UIViewController {
         if let result = brain.result{
             displayValue.value = result
         }
-        
         setDescription()
     }
     
     @IBAction func resetCalculator() {
         brain = CalculatorBrain()
-        print("\(brain.resultIsPending)")
+        brain.setOperand((0.0, "0"))
         displayValue = (0, "0")
     }
     

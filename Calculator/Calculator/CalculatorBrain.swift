@@ -12,19 +12,17 @@ struct CalculatorBrain{
     
     private var accumulator: (value: Double, description: String)?
     
-    var result: Double?{
-        get{
-            return accumulator?.value
-        }
+    var result: Double? {
+        return accumulator?.value
+    }
+    var description: String {
+        return resultIsPending ? pendingBinaryOperation!.description : accumulator?.description ?? " "
     }
     
-    var description: String{
-        get{
-            if resultIsPending {
-                return pendingBinaryOperation!.description
-            }
-            return accumulator?.description ?? " "
-        }
+    private var pendingBinaryOperation: PendingBinaryOperation?
+    
+    var resultIsPending: Bool {
+        return pendingBinaryOperation != nil
     }
     
     private enum Operation {
@@ -49,13 +47,7 @@ struct CalculatorBrain{
         "Rad": Operation.random
     ]
     
-    private var pendingBinaryOperation: PendingBinaryOperation?
-    
-    var resultIsPending: Bool {
-        get {
-            return pendingBinaryOperation != nil
-        }
-    }
+
     
     private struct PendingBinaryOperation{
         let function: (Double, Double) -> Double
@@ -76,8 +68,7 @@ struct CalculatorBrain{
     }
     
     private mutating func calculateRandomNumber(){
-        let arc4randomMax = Double(UInt32.max)
-        accumulator = (Double(arc4random()) / arc4randomMax, "RAD")
+        accumulator = (Double(arc4random()) / Double(UInt32.max), "RAD")
     }
     
     mutating func performOperation(_ symbol: String){
@@ -98,12 +89,22 @@ struct CalculatorBrain{
             case .equals(): performPendingBinaryOperation()
             case .random: calculateRandomNumber()
             }
-
         }
     }
     
     mutating func setOperand(_ operand: (Double, String)){
         accumulator = (operand.0, operand.1)
+    }
+    
+    func setOperand(variable named: String){
+    
+    }
+    
+    func evaluate(using variables: Dictionary<String,Double>? = nil)
+        -> (result: Double?, isPending: Bool, description: String){
+            
+            
+            return (nil, false, "")
     }
 
 }
