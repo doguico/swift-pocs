@@ -8,8 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-    
+class ViewController: UIViewController {    
     @IBOutlet weak var display: UILabel!
     @IBOutlet weak var history: UILabel!
     
@@ -22,8 +21,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
     
         formatter.maximumFractionDigits = 6
-        //formatter.minimumFractionDigits = 0
         formatter.numberStyle = .decimal
+        
+        adjustLayout(for: self.view, UIDevice.current.orientation.isLandscape)
     }
     
     var displayValue: Double {
@@ -36,20 +36,20 @@ class ViewController: UIViewController {
     }
     
     func setDescription(){
-        history.text = brain.resultIsPending ? brain.description + " ..." : brain.result != nil ? brain.description + " =" : " "
+        history.text = brain.resultIsPending ?
+            brain.description + " ..." : brain.result != nil ? brain.description + " =" : " "
     }
     
     @IBAction func touchDigit(_ sender: UIButton) {
         let digit = sender.currentTitle!
-        if digit == "." && display.text!.contains(".") && userIsInTheMiddleOfTyping {
-            return
-        }
+        if digit == "." && !display.text!.contains(".") || digit != "." || !userIsInTheMiddleOfTyping {
         if userIsInTheMiddleOfTyping {
             let textCurrentlyInDisplay = display.text!
             display.text = textCurrentlyInDisplay + digit
         } else {
             display.text = digit == "." ? "0." : digit
             userIsInTheMiddleOfTyping = true
+            }
         }
     }
     
@@ -57,7 +57,7 @@ class ViewController: UIViewController {
         if userIsInTheMiddleOfTyping {
             brain.setOperand(displayValue)
             userIsInTheMiddleOfTyping = false
-        } 
+        }
         if let symbol = sender.currentTitle {
             brain.performOperation(symbol)
         }
@@ -69,12 +69,33 @@ class ViewController: UIViewController {
     
     @IBAction func resetCalculator() {
         brain = CalculatorBrain()
-        brain.setOperand(0.0)
         displayValue = 0
         userIsInTheMiddleOfTyping = false
         setDescription()
     }
     
     
+    private let landscapeFunctionalities = 98
+    private let portraitFunctionalities = 99
+    
+    func adjustLayout(for view: UIView, _ isLandscape: Bool){
+        for view in view.subviews{
+            if view.tag == landscapeFunctionalities {
+                view.isHidden = !isLandscape
+            }
+            else if view.tag == portraitFunctionalities {
+                view.isHidden = isLandscape
+            }
+            else {
+                adjustLayout(for: view, isLandscape)
+            }
+        }
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        adjustLayout(for: self.view, UIDevice.current.orientation.isLandscape)
+    }
+    @IBAction func undoAction() {
+    }
 }
 
