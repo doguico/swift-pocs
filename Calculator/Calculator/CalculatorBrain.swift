@@ -44,7 +44,7 @@ struct CalculatorBrain{
         "×": Operation.binaryOperation(*, {$0 + " × "}),
         "÷": Operation.binaryOperation(/, {$0 + " ÷ "}),
         "=": Operation.equals,
-        "Rad": Operation.random
+        "Rand": Operation.random
     ]
     
     private struct PendingBinaryOperation{
@@ -66,7 +66,7 @@ struct CalculatorBrain{
     }
     
     private mutating func calculateRandomNumber(){
-        accumulator = (Double(arc4random()) / Double(UInt32.max), "RAD")
+        accumulator = (Double(arc4random()) / Double(UInt32.max), "Rand")
     }
     
     mutating func performOperation(_ symbol: String){
@@ -95,6 +95,7 @@ struct CalculatorBrain{
     }
     
     func setOperand(variable named: String){
+        
     }
     
     func evaluate(using variables: Dictionary<String,Double>? = nil)
