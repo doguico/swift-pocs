@@ -35,6 +35,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8D526DAC1F6B3613007A00D9 /* changeLayoutOnTransition */ = {
+			isa = PBXGroup;
+			children = (
+				8DCEA20C1F6AD8FF00D0163C /* ViewController.swift */,
+				8DCEA20E1F6AD8FF00D0163C /* Main.storyboard */,
+			);
+			name = changeLayoutOnTransition;
+			sourceTree = "<group>";
+		};
 		8DCEA1FE1F6AD8FE00D0163C = {
 			isa = PBXGroup;
 			children = (
@@ -54,14 +63,21 @@
 		8DCEA2091F6AD8FF00D0163C /* UIPocs */ = {
 			isa = PBXGroup;
 			children = (
+				8D526DAC1F6B3613007A00D9 /* changeLayoutOnTransition */,
+				8DCEA21C1F6AD91800D0163C /* Supporting Files */,
+			);
+			path = UIPocs;
+			sourceTree = "<group>";
+		};
+		8DCEA21C1F6AD91800D0163C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
 				8DCEA20A1F6AD8FF00D0163C /* AppDelegate.swift */,
-				8DCEA20C1F6AD8FF00D0163C /* ViewController.swift */,
-				8DCEA20E1F6AD8FF00D0163C /* Main.storyboard */,
 				8DCEA2111F6AD8FF00D0163C /* Assets.xcassets */,
 				8DCEA2131F6AD8FF00D0163C /* LaunchScreen.storyboard */,
 				8DCEA2161F6AD8FF00D0163C /* Info.plist */,
 			);
-			path = UIPocs;
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -301,6 +317,7 @@
 				8DCEA21B1F6AD8FF00D0163C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
