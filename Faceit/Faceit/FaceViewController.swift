@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class FaceViewController: UIViewController {
 
     @IBOutlet weak var faceView: FaceView!{
         didSet{
@@ -42,7 +42,7 @@ class ViewController: UIViewController {
         }
     }
     
-    var expression = FacialExpression(eyes: .open, mouth: .grin){
+    var expression = FacialExpression(eyes: .open, mouth: .neutral){
         didSet{
             updateUI()
         }
