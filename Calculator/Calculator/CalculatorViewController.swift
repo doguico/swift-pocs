@@ -8,9 +8,10 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class CalculatorViewController: UIViewController {
     @IBOutlet weak var display: UILabel!
     @IBOutlet weak var history: UILabel!
+    @IBOutlet weak var variableValue: UILabel!
     
     var userIsInTheMiddleOfTyping = false
     var brain = CalculatorBrain()
@@ -70,7 +71,8 @@ class ViewController: UIViewController {
     @IBAction func resetCalculator() {
         brain = CalculatorBrain()
         let result = brain.evaluate(using: Dictionary<String, Double>())
-        displayValue = result.result ?? 0
+        displayValue = 0
+        variableValue.text = "M: 0"
         userIsInTheMiddleOfTyping = false
         setDescription(result)
     }
@@ -118,6 +120,7 @@ class ViewController: UIViewController {
     
     @IBAction func getMemory() {
         userIsInTheMiddleOfTyping = false
+        variableValue.text! = "M: \(displayValue)"
         displayValue = brain.evaluate(using: ["M" : displayValue]).result ?? displayValue
     }
 }
